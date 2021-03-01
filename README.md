@@ -1,26 +1,24 @@
 # module federation demo in vue-cli
-
-## the demo failed, and cannot find out why
-
 ##  description
 @vue/cli version 5.0.0-alpha.5
 
 ### vue.config.js
 
 ```
-publicPath: 'http://localhost:8082/',
-
 chainWebpack: (config) => {
+  config.optimization.delete('splitChunks')
   /* module federation plugin import */
   config
     .plugin('module-federation-plugin')
     .use(require('webpack').container.ModuleFederationPlugin, [{
-      name: "layout",
+      name: "home",
       filename: "remoteEntry.js",
       remotes: {
-        home: "home@http://localhost:8081/remoteEntry.js",
+        layout: "layout@http://localhost:8082/remoteEntry.js",
       },
-      exposes: {},
+      exposes: {
+        './HelloWorld': './src/components/HelloWorld.vue'
+      },
       shared: {
         "vue": {
           eager: true,
@@ -28,22 +26,19 @@ chainWebpack: (config) => {
           requiredVersion: deps.vue,
         }
       }
-  }]).before('vue-loader')
-}
+  }])
+},
 ```
 
-### trials
+### related issues in vue-cli
 
-Q: Maybe it's the problem of the order of plugins ?
-A: I have used webpack chain `.before`, and I have inspect the webpack config by use `vue inspect >output.js`, still not work.
+https://github.com/vuejs/vue-cli/issues/6318
 
-Q: Maybe it's aproblem with webpack version ? 
-A: I have upload a demo with pure webpack config, the webpack package version equals this repo, here is the url link(https://github.com/Ge-yuan-jun/pure-webpack5-mf-plugin), So, I think maybe vue-cli don't support the feature ?
+### todo
+It seems there is a conflict between splitChunks and webpack module federation(I am not an expert). 
+After deleting splitChunks config, module federation works
 
-### need help
-
-Maybe the maintainer of vue-cli can help find out the reason ?
-
+maybe ask splitChunks maintainer ?
 ## successful demo link by using pure webpack
 
 https://github.com/Ge-yuan-jun/pure-webpack5-mf-plugin
