@@ -12,7 +12,7 @@ module.exports = {
         name: "home",
         filename: "remoteEntry.js",
         remotes: {
-          layout: "layout@http://localhost:8082/remoteEntry.js",
+          layout: 'layout@http://localhost:8082/remoteEntry.js',
         },
         exposes: {
           './HelloWorld': './src/components/HelloWorld.vue'

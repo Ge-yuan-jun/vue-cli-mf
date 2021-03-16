@@ -12,7 +12,7 @@ module.exports = {
         name: "layout",
         filename: "remoteEntry.js",
         remotes: {
-          home: "home@http://localhost:8081/remoteEntry.js",
+          home: 'home@http://localhost:8081/remoteEntry.js',
         },
         exposes: {},
         shared: {

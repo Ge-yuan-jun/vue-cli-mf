@@ -1,8 +1,11 @@
-<template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld />
-  </div>
+<template lang="pug">
+  div#app
+    img(alt="Vue logo", src="./assets/logo.png")
+    HelloWorld(msg="hello app")
+  //- <div id="app">
+  //-   <img alt="Vue logo" src="./assets/logo.png">
+  //-   <HelloWorld />
+  //- </div>
 </template>
 
 <script>

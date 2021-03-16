@@ -19,6 +19,8 @@
     "@vue/cli-service": "~5.0.0-alpha.5",
     "eslint": "^7.20.0",
     "eslint-plugin-vue": "^7.6.0",
+    "pug": "^3.0.2",
+    "pug-plain-loader": "^1.1.0",
     "vue-template-compiler": "^2.6.11"
   },
   "eslintConfig": {
